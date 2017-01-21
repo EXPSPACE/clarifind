@@ -37,13 +37,34 @@ public class CameraActivity extends AppCompatActivity {
             String s = "File " + data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH);
             String picPath = data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH);
 
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap originalBitmap = BitmapFactory.decodeFile(picPath,bmOptions);
-            originalBitmap = Bitmap.createScaledBitmap(originalBitmap,1000,1000,true);
             Matrix matrix = new Matrix();
             matrix.postRotate(90);
-            Bitmap rotatedBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, 1000, 1000, matrix, true);
-            imageView.setImageBitmap(rotatedBitmap);
+            ExifInterface exif = null;
+
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            Bitmap myBitmap = BitmapFactory.decodeFile(picPath,bmOptions);
+            myBitmap = Bitmap.createScaledBitmap(myBitmap,1000,1000,true);
+            int orientation;
+
+            try {
+                exif = new ExifInterface(picPath);
+                orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+
+                if (orientation == 6) {
+                    matrix.postRotate(0);
+                }
+                else if (orientation == 1) {
+                    matrix.postRotate(270);
+                }
+                
+                myBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight(), matrix, true); // rotating bitmap
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            //rotatedBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, 1000, 1000, matrix, true);
+            imageView.setImageBitmap(myBitmap);
 
 
 
