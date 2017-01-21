@@ -1,31 +1,21 @@
 package com.conuhax.clarifind.services;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.conuhax.clarifind.Authentication.Credential;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.conuhax.clarifind.model.clarifai.Keyword;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import clarifai2.api.ClarifaiBuilder;
 import clarifai2.api.ClarifaiClient;
-import clarifai2.api.ClarifaiResponse;
-import clarifai2.api.request.ClarifaiRequest;
 import clarifai2.dto.input.ClarifaiInput;
 import clarifai2.dto.input.image.ClarifaiImage;
 import clarifai2.dto.model.output.ClarifaiOutput;
 import clarifai2.dto.prediction.Concept;
-
-import static android.R.attr.bitmap;
 
 /**
  * Created by michal wozniak on 1/21/2017.
@@ -68,11 +58,25 @@ public class ClarifaiService {
                         ClarifaiInput.forImage(ClarifaiImage.of(byteArray))
                 )
                 .executeAsync(c -> {
-                   String output =  c.get(0).toString();
+                    ClarifaiOutput clarifaiOutput = c.get(0);
 
-                    Log.e("test",output);
 
+                    List<Keyword> keywordList = new ArrayList<>();
+                    for(int i=0; i< clarifaiOutput.data().size();i++)
+                    {
+                        Concept current = (Concept) clarifaiOutput.data().get(i);
+                        Log.e("name", current.name());
+                        Log.e("value", String.valueOf(current.value()));
+
+                        if(current.value()> 0.90)
+                        {
+                            Keyword newKeyword = new Keyword(current.name(),current.value());
+                            keywordList.add(newKeyword);
+                        }
+                    }
                 });
+
+
 
 
 
