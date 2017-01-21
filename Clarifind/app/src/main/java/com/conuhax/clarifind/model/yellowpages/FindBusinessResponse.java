@@ -5,5 +5,15 @@ package com.conuhax.clarifind.model.yellowpages;
  */
 
 public class FindBusinessResponse {
+
     private Listings[] listings;
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Listings listing : listings) {
+            sb.append(listing.toString() + "\n");
+        }
+        return sb.toString();
+    }
 }

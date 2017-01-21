@@ -7,10 +7,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.conuhax.clarifind.YellowPagesService.retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onYellowPageQuery(View view) {
-        YellowPagesService yellowPagesService = YellowPagesService.retrofit.create(YellowPagesService.class);
-        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","json","APIKEY","UID");
+        YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
+        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
 
         call.enqueue(new Callback<FindBusinessResponse>() {
             @Override
@@ -47,6 +53,5 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("Something went wrong: " + t.getMessage());
             }
         });
-
     }
 }

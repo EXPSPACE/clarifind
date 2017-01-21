@@ -5,8 +5,13 @@ package com.conuhax.clarifind.model.yellowpages;
  */
 
 public class Address {
-    String street;
-    String city;
-    String prov;
-    String pcode;
+    private String street;
+    private String city;
+    private String prov;
+    private String pcode;
+
+    @Override
+    public String toString() {
+        return "street: " + street + "\ncity: " + city + "\nprov: " + prov + "\npcode: " + pcode;
+    }
 }
