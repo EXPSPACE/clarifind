@@ -3,6 +3,9 @@ package com.conuhax.clarifind;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.GradientDrawable;
+import android.media.ExifInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 
 import com.sandrios.sandriosCamera.internal.SandriosCamera;
 import com.sandrios.sandriosCamera.internal.configuration.CameraConfiguration;
+
+import java.io.IOException;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -32,11 +37,17 @@ public class CameraActivity extends AppCompatActivity {
             String s = "File " + data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH);
             String picPath = data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH);
 
-
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            Bitmap bitmap = BitmapFactory.decodeFile(picPath,bmOptions);
-            bitmap = Bitmap.createScaledBitmap(bitmap,1000,1000,true);
-            imageView.setImageBitmap(bitmap);
+            Bitmap originalBitmap = BitmapFactory.decodeFile(picPath,bmOptions);
+            originalBitmap = Bitmap.createScaledBitmap(originalBitmap,1000,1000,true);
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap rotatedBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, 1000, 1000, matrix, true);
+            imageView.setImageBitmap(rotatedBitmap);
+
+
+
+
 
             Log.e("File", "" + data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH));
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
