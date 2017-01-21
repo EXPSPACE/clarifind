@@ -15,7 +15,7 @@ import retrofit2.http.Query;
 public interface YellowPagesService {
 
     @GET("/FindBusiness/?what={what}&where={where}&fmt={json|xml}&apikey={xxxxxxxxxxxxxxxxxxxxxxxx}&UID={unique identifier}")
-    Call<FindBusinessResponse> fetchBusinesses(@Query("what") int what, @Query("where") int where, @Query("fmt") int fmt, @Query("apikey") int apikey, @Query("UID") int UID);
+    Call<FindBusinessResponse> fetchBusinesses(@Query("what") String what, @Query("where") String where, @Query("fmt") String fmt, @Query("apikey") String apikey, @Query("UID") String UID);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://api.yellowapi.com")

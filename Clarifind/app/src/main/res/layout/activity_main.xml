@@ -14,5 +14,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Camera"
-        android:onClick="openCamera" />
+        android:onClick="openCamera"
+        android:id="@+id/button" />
+
+    <Button
+        android:text="Yellow Page Api"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button2"
+        android:onClick="onYellowPageQuery" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/yellow_page_response" />
 </RelativeLayout>
