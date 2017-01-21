@@ -1,5 +1,7 @@
 package com.conuhax.clarifind.model.yellowpages;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Arrays;
 
 /**
@@ -7,19 +9,21 @@ import java.util.Arrays;
  */
 
 public class Listings {
-    String distance;
-    String id;
-    String name;
-    Address[] address;
-    String geoCode;
+    String parentId;
+    boolean isParent;
+    private String distance;
+
+    Content content;
+
+    private String id;
+    private String name;
+    private Address address;
+    private GeoCode geoCode;
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("distance: " + distance + "\nid: " + id + "\nname: " + "\ngeoCode: " + geoCode + "\n");
-        for(Address specAdress : address) {
-            sb.append(specAdress.toString() + "\n");
-        }
+        sb.append("distance: " + distance + "\nid: " + id + "\nname: " + name + "\ngeoCode: " + geoCode + "\n" + address.toString() +"\n\n");
         return sb.toString();
     }
 }

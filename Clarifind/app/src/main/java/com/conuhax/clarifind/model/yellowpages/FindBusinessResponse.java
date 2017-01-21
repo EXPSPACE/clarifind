@@ -1,5 +1,7 @@
 package com.conuhax.clarifind.model.yellowpages;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.Arrays;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Arrays;
  */
 
 public class FindBusinessResponse {
+    private Summary summary;
     private Listings[] listings;
 
     @Override
