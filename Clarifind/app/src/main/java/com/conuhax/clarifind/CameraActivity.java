@@ -12,6 +12,8 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.conuhax.clarifind.Utilities.ImageManager;
+import com.conuhax.clarifind.services.ClarifaiService;
 import com.sandrios.sandriosCamera.internal.SandriosCamera;
 import com.sandrios.sandriosCamera.internal.configuration.CameraConfiguration;
 
@@ -66,7 +68,9 @@ public class CameraActivity extends AppCompatActivity {
             //rotatedBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, 1000, 1000, matrix, true);
             imageView.setImageBitmap(myBitmap);
 
-
+            //send to clarifai
+            ClarifaiService clarifaiService = ClarifaiService.getInstance();
+            clarifaiService.sendImage(myBitmap);
 
 
 

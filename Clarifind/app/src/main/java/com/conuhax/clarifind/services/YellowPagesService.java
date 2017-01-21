@@ -1,4 +1,4 @@
-package com.conuhax.clarifind;
+package com.conuhax.clarifind.services;
 
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
 

@@ -15,6 +15,16 @@ import java.io.InputStream;
 
 public class ImageManager {
 
+
+    /**
+     * Load image from asset folder
+     *
+     *  eg : Bitmap image = ImageManager.getBitmapFromAsset(this,"hammer.jpg");
+     *
+     * @param context
+     * @param filePath
+     * @return
+     */
     public static Bitmap getBitmapFromAsset(Context context, String filePath) {
         AssetManager assetManager = context.getAssets();
 

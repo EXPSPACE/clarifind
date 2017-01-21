@@ -10,18 +10,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.conuhax.clarifind.Utilities.ImageManager;
+import com.conuhax.clarifind.model.clarifai.Keyword;
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
-import com.conuhax.clarifind.services.ClarifaiService;
+import com.conuhax.clarifind.services.YellowPagesService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.conuhax.clarifind.YellowPagesService.retrofit;
-
+import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 
 public class MainActivity extends AppCompatActivity {
+
+    private List<Keyword> keywordList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        test();
-    }
-
-    public void test()
-    {
-
-        ClarifaiService clarifaiService = ClarifaiService.getInstance();
-
-
-        Bitmap image = ImageManager.getBitmapFromAsset(this,"hammer.jpg");
-        int nb = image.getByteCount();
-        clarifaiService.sendImage(image);
-        
     }
 
     /** Called when the user clicks the Camera button */
@@ -78,4 +69,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
