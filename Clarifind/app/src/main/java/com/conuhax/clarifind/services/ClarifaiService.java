@@ -7,6 +7,7 @@ import com.conuhax.clarifind.Authentication.Credential;
 import com.conuhax.clarifind.model.clarifai.Keyword;
 
 import java.io.ByteArrayOutputStream;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class ClarifaiService {
      * @param image
      * @return
      */
-    public void sendImage(Bitmap image)
+    public void sendImage(Bitmap image, List<Keyword> keywords)
     {
         Log.d("sendImage", "processed");
 
@@ -60,18 +61,16 @@ public class ClarifaiService {
                 .executeAsync(c -> {
                     ClarifaiOutput clarifaiOutput = c.get(0);
 
-
-                    List<Keyword> keywordList = new ArrayList<>();
                     for(int i=0; i< clarifaiOutput.data().size();i++)
                     {
                         Concept current = (Concept) clarifaiOutput.data().get(i);
-                        Log.e("name", current.name());
-                        Log.e("value", String.valueOf(current.value()));
+                        //Log.e("name", current.name());
+                        //Log.e("value", String.valueOf(current.value()));
 
                         if(current.value()> 0.90)
                         {
                             Keyword newKeyword = new Keyword(current.name(),current.value());
-                            keywordList.add(newKeyword);
+                            keywords.add(newKeyword);
                         }
                     }
                 });

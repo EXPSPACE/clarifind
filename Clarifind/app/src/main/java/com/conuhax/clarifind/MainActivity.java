@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.conuhax.clarifind.Authentication.Credential;
 import com.conuhax.clarifind.model.clarifai.Keyword;
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
 import com.conuhax.clarifind.services.ClarifaiService;
@@ -60,13 +61,15 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
+            mGoogleApiClient = new GoogleApiClient
+                    .Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
         }
 
+        keywordList = new ArrayList<>();
     }
 
     //Connects to the location service
@@ -153,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements
 
             //send to clarifai
             ClarifaiService clarifaiService = ClarifaiService.getInstance();
-            clarifaiService.sendImage(myBitmap);
+            clarifaiService.sendImage(myBitmap, keywordList);
 
 
 
@@ -175,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void onYellowPageQuery(View view) {
         YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
-        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
+        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON", Credential.YELLOW_PAGES_KEY,"127.0.0.1");
 
         call.enqueue(new Callback<FindBusinessResponse>() {
             @Override
