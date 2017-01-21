@@ -9,4 +9,9 @@ public class Address {
     String city;
     String prov;
     String pcode;
+
+    @Override
+    public String toString() {
+        return "street: " + street + "\ncity: " + city + "\nprov: " + prov + "\npcode: " + pcode;
+    }
 }

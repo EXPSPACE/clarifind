@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onYellowPageQuery(View view) {
         YellowPagesService yellowPagesService = YellowPagesService.retrofit.create(YellowPagesService.class);
-        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","json","APIKEY","UID");
+        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON","vu8khgxu3q3fp9xasevt7aet","127.0.0.1");
 
         call.enqueue(new Callback<FindBusinessResponse>() {
             @Override
