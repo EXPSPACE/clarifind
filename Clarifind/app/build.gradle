@@ -37,4 +37,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.clarifai.clarifai-api2:core:2.2.3'
+    compile 'com.sandrios.android:sandriosCamera:1.0.8'
 }
