@@ -48,22 +48,5 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("Something went wrong: " + t.getMessage());
             }
         });
-
-
-//        Call<ResponseBody> call = yellowPagesService.fetchBusinesses("car","montreal","JSON","vu8khgxu3q3fp9xasevt7aet","127.0.0.1");
-//
-//        call.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
-//                textView.setText(response.body().toString());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
-
     }
 }

@@ -1,7 +1,5 @@
 package com.conuhax.clarifind.model.yellowpages;
 
-import com.google.gson.annotations.Expose;
-
 /**
  * Created by NSPACE on 1/21/2017.
  */
