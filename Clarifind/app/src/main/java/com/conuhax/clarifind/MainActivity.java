@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onLocationSearch(View view) {
+        Intent intent = new Intent(this, LocationActivity.class);
+        startActivity(intent);
+    }
+
     public void onYellowPageQuery(View view) {
         YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
         Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
