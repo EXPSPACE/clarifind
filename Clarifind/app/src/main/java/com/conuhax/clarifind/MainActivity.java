@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onLocationSearch(View view) {
+        Intent intent = new Intent(this, LocationActivity.class);
+        startActivity(intent);
+    }
+
     public void onYellowPageQuery(View view) {
         YellowPagesService yellowPagesService = YellowPagesService.retrofit.create(YellowPagesService.class);
         Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","json","APIKEY","UID");
