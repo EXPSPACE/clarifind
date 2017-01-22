@@ -5,11 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.conuhax.clarifind.model.LocationAdapter;
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
+import com.conuhax.clarifind.model.yellowpages.Listings;
 import com.conuhax.clarifind.services.ClarifaiService;
 import com.conuhax.clarifind.services.YellowPagesService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +41,15 @@ public class ResultActivity extends AppCompatActivity {
         searchTitle.setText("Yellow page search results for : " + keyword);
 
 
+        // Construct the data source
+        ArrayList<Listings> arrayOfUsers = new ArrayList<>();
+        // Create the adapter to convert the array to views
+        LocationAdapter adapter = new LocationAdapter(this, arrayOfUsers);
+        // Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.locationList);
+        listView.setAdapter(adapter);
+
+
         YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
         Log.i("ANY",coordinates);
         Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses(keyword,coordinates,"JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
@@ -44,7 +60,8 @@ public class ResultActivity extends AppCompatActivity {
                 final TextView textView = (TextView) findViewById(R.id.yellow_response);
                 textView.setText(response.body().toString());
 
-               businessResponse = response.body();
+                businessResponse = response.body();
+                adapter.addAll(businessResponse.listings);
 
             }
             @Override

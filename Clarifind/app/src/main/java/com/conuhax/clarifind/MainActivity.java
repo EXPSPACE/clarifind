@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements
     private static final int CAPTURE_MEDIA = 368;
     private boolean showImagePicker = true;
     protected GoogleApiClient mGoogleApiClient;
-    protected Location mLastLocation;
+    public static Location mLastLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

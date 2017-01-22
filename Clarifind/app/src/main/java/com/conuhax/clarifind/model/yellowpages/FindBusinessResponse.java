@@ -6,7 +6,7 @@ package com.conuhax.clarifind.model.yellowpages;
 
 public class FindBusinessResponse {
 
-    private Listings[] listings;
+    public Listings[] listings;
 
     @Override
     public String toString() {
