@@ -30,8 +30,6 @@ import clarifai2.dto.prediction.Concept;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.conuhax.clarifind.MainActivity.COORD_MESSAGE;
 import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 
 /**
@@ -42,6 +40,8 @@ public class ClarifaiService {
 
     private static ClarifaiService service;
     private static ClarifaiClient client;
+    public final static String COORD_MESSAGE = "com.example.myfirstapp.COORDINATE";
+    public final static String WORD_MESSAGE = "com.example.myfirstapp.KEYWORD";
 
     private ClarifaiService(){}
 
@@ -112,8 +112,9 @@ public class ClarifaiService {
 
                                 Intent intent = new Intent(mainActivity, ResultActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                //String coord = String.valueOf( "cZ" +String.valueOf(mLastLocation.getLongitude()+"," + mLastLocation.getLatitude()));
-                                //intent.putExtra(COORD_MESSAGE,coord);
+                                String coord = String.valueOf( "cZ" +String.valueOf(mainActivity.getmLastLocation().getLongitude()+"," + mainActivity.getmLastLocation().getLatitude()));
+                                intent.putExtra(COORD_MESSAGE,coord);
+                                intent.putExtra(WORD_MESSAGE,word.getName());
                                 mainActivity.startActivity(intent);
                                 mainActivity.finish();
 

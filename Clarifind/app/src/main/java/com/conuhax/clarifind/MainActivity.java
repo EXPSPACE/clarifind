@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements
     private boolean showImagePicker = true;
     protected GoogleApiClient mGoogleApiClient;
     protected Location mLastLocation;
-    public final static String COORD_MESSAGE = "com.example.myfirstapp.COORDINATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,5 +213,9 @@ public class MainActivity extends AppCompatActivity implements
                 .setVideoFileSize(15) //File Size in MB: Default is no limit
                 .setMediaAction(CameraConfiguration.MEDIA_ACTION_PHOTO) // default is CameraConfiguration.MEDIA_ACTION_BOTH
                 .launchCamera();
+    }
+
+    public Location getmLastLocation() {
+        return mLastLocation;
     }
 }

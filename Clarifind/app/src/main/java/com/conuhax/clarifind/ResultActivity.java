@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
+import com.conuhax.clarifind.services.ClarifaiService;
 import com.conuhax.clarifind.services.YellowPagesService;
 
 import retrofit2.Call;
@@ -23,25 +24,26 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-//        Intent intent = getIntent();
-//        String coordinates = intent.getStringExtra(MainActivity.COORD_MESSAGE);
-//
-//        YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
-//        Log.i("ANY",coordinates);
-//        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car",coordinates,"JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
-//
-//        call.enqueue(new Callback<FindBusinessResponse>() {
-//            @Override
-//            public void onResponse(Call<FindBusinessResponse> call, Response<FindBusinessResponse> response) {
-//                final TextView textView = (TextView) findViewById(R.id.yellow_response);
-//                textView.setText(response.body().toString());
-//            }
-//            @Override
-//            public void onFailure(Call<FindBusinessResponse> call, Throwable t) {
-//                final TextView textView = (TextView) findViewById(R.id.yellow_response);
-//                textView.setText("Something went wrong: " + t.getMessage());
-//            }
-//        });
+        Intent intent = getIntent();
+        String coordinates = intent.getStringExtra(ClarifaiService.COORD_MESSAGE);
+        String keyword = intent.getStringExtra(ClarifaiService.WORD_MESSAGE);
+
+        YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
+        Log.i("ANY",coordinates);
+        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses(keyword,coordinates,"JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
+
+        call.enqueue(new Callback<FindBusinessResponse>() {
+            @Override
+            public void onResponse(Call<FindBusinessResponse> call, Response<FindBusinessResponse> response) {
+                final TextView textView = (TextView) findViewById(R.id.yellow_response);
+                textView.setText(response.body().toString());
+            }
+            @Override
+            public void onFailure(Call<FindBusinessResponse> call, Throwable t) {
+                final TextView textView = (TextView) findViewById(R.id.yellow_response);
+                textView.setText("Something went wrong: " + t.getMessage());
+            }
+        });
     }
 
     /*Put back in main  without the button
