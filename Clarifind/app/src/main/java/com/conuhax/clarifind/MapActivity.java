@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import com.conuhax.clarifind.model.yellowpages.Listings;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -54,7 +56,23 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         MarkerOptions montrealEvent = new MarkerOptions().position(montreal).title("Montreal MARKER!").draggable(true);
         mMap.addMarker(montrealEvent);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(montreal, 12.5f));
+        Listings[] resultListings = ResultActivity.businessResponse.listings;
+        for(Listings listing : resultListings) {
+            double latDouble = Double.parseDouble(listing.geoCode.latitude);
+            double longDouble = Double.parseDouble(listing.geoCode.longitude);
+
+            Log.i("ResultsActivity", "lat double: " + latDouble);
+            Log.i("ResultsActivity", "long double: " + longDouble);
+            Log.i("ResultsActivity", "business name: " + listing.name);
+
+            LatLng markerPos = new LatLng(latDouble, longDouble);
+            MarkerOptions markerEvent = new MarkerOptions().position(markerPos).title(listing.name).draggable(false);
+            mMap.addMarker(markerEvent);
+        }
+
+
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(montreal, 15f));
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {

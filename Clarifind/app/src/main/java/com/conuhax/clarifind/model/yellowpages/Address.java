@@ -5,10 +5,10 @@ package com.conuhax.clarifind.model.yellowpages;
  */
 
 public class Address {
-    private String street;
-    private String city;
-    private String prov;
-    private String pcode;
+    public String street;
+    public String city;
+    public String prov;
+    public String pcode;
 
     @Override
     public String toString() {

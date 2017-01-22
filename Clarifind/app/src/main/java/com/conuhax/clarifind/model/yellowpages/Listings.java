@@ -5,13 +5,13 @@ package com.conuhax.clarifind.model.yellowpages;
  */
 
 public class Listings {
-    private String parentId;
-    private boolean isParent;
-    private String distance;
-    private String id;
-    private String name;
-    private Address address;
-    private GeoCode geoCode;
+    public String parentId;
+    public boolean isParent;
+    public String distance;
+    public String id;
+    public String name;
+    public Address address;
+    public GeoCode geoCode;
 
     @Override
     public String toString() {
