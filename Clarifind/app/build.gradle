@@ -39,4 +39,5 @@ dependencies {
     compile 'com.clarifai.clarifai-api2:core:2.2.3'
     compile 'com.sandrios.android:sandriosCamera:1.0.8'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
+    compile 'com.google.android.gms:play-services-location:10.0.1'
 }
