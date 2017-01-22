@@ -15,9 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.conuhax.clarifind.Authentication.Credential;
 import com.conuhax.clarifind.model.clarifai.Keyword;
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
 import com.conuhax.clarifind.services.ClarifaiService;
@@ -41,7 +43,6 @@ import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
-    private List<Keyword> keywordList;
     private static final int CAPTURE_MEDIA = 368;
     private boolean showImagePicker = true;
     protected GoogleApiClient mGoogleApiClient;
@@ -61,13 +62,13 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
+            mGoogleApiClient = new GoogleApiClient
+                    .Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
         }
-
     }
 
     //Connects to the location service
@@ -154,7 +155,8 @@ public class MainActivity extends AppCompatActivity implements
 
             //send to clarifai
             ClarifaiService clarifaiService = ClarifaiService.getInstance();
-            clarifaiService.sendImage(myBitmap);
+            LinearLayout layoutKeywords = (LinearLayout) findViewById(R.id.LayoutKeywords);
+            clarifaiService.sendImage(myBitmap, layoutKeywords);
 
 
 
@@ -167,6 +169,10 @@ public class MainActivity extends AppCompatActivity implements
     /** Called when the user clicks the Camera button */
     public void openCamera(View view) {
         launchCamera();
+        LinearLayout welcomeLayout = (LinearLayout)this.findViewById(R.id.Welcome);
+        LinearLayout keywordLayout = (LinearLayout)this.findViewById(R.id.LayoutKeywords);
+        welcomeLayout.setVisibility(LinearLayout.GONE);
+        keywordLayout.setVisibility(LinearLayout.VISIBLE);
     }
 
     public void onLocationSearch(View view) {
@@ -176,20 +182,25 @@ public class MainActivity extends AppCompatActivity implements
 
     public void onYellowPageQuery(View view) {
         YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
-        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
+        Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses("car","montreal","JSON", Credential.YELLOW_PAGES_KEY,"127.0.0.1");
 
         call.enqueue(new Callback<FindBusinessResponse>() {
             @Override
             public void onResponse(Call<FindBusinessResponse> call, Response<FindBusinessResponse> response) {
-                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
-                textView.setText(response.body().toString());
+//                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
+//                textView.setText(response.body().toString());
             }
             @Override
             public void onFailure(Call<FindBusinessResponse> call, Throwable t) {
-                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
-                textView.setText("Something went wrong: " + t.getMessage());
+//                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
+//                textView.setText("Something went wrong: " + t.getMessage());
             }
         });
+    }
+
+    public void onClickMapActivity(View view) {
+        Intent startMapActivity = new Intent(this,MapActivity.class);
+        startActivity(startMapActivity);
     }
 
     private void launchCamera() {
@@ -199,5 +210,4 @@ public class MainActivity extends AppCompatActivity implements
                 .setMediaAction(CameraConfiguration.MEDIA_ACTION_PHOTO) // default is CameraConfiguration.MEDIA_ACTION_BOTH
                 .launchCamera();
     }
-
 }
