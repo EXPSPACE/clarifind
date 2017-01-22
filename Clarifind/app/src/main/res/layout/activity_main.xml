@@ -38,7 +38,7 @@
             android:layout_marginTop="48dp" />
 
         <TextView
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            android:text="We're no strangers to love.\nYou know the rules, and so do I\nA new commitment's what I'm\nThinking of\nYou wouldn't get this from\nANY OTHER GUY!!!!!!!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"

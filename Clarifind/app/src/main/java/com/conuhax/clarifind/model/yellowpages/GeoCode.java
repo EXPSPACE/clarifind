@@ -5,8 +5,8 @@ package com.conuhax.clarifind.model.yellowpages;
  */
 
 public class GeoCode {
-    String latitude;
-    String longitude;
+    public String latitude;
+    public String longitude;
 
     @Override
     public String toString() {
