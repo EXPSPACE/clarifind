@@ -57,17 +57,13 @@ public class ResultActivity extends AppCompatActivity {
         call.enqueue(new Callback<FindBusinessResponse>() {
             @Override
             public void onResponse(Call<FindBusinessResponse> call, Response<FindBusinessResponse> response) {
-                final TextView textView = (TextView) findViewById(R.id.yellow_response);
-                textView.setText(response.body().toString());
-
                 businessResponse = response.body();
                 adapter.addAll(businessResponse.listings);
 
             }
             @Override
             public void onFailure(Call<FindBusinessResponse> call, Throwable t) {
-                final TextView textView = (TextView) findViewById(R.id.yellow_response);
-                textView.setText("Something went wrong: " + t.getMessage());
+
             }
         });
     }
