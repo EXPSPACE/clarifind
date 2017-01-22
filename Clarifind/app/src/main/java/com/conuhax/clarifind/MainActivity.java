@@ -59,4 +59,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void onClickMapActivity(View view) {
+        Intent startMapActivity = new Intent(this,MapActivity.class);
+        startActivity(startMapActivity);
+    }
 }
