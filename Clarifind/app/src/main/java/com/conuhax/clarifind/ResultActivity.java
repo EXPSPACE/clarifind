@@ -63,4 +63,10 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(intent);
     }
     */
+
+    public void onClickMapActivity(View view) {
+        Intent startMapActivity = new Intent(this,MapActivity.class);
+        startActivity(startMapActivity);
+    }
+
 }

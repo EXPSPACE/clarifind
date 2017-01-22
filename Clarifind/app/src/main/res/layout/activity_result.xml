@@ -19,10 +19,18 @@
         android:layout_marginTop="15dp"
         android:id="@+id/search_title" />
 
-    <ScrollView
+    <Button
+        android:text="Show map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below = "@id/search_title"
+        android:id="@+id/show_map_button"
+        android:onClick="onClickMapActivity" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below = "@id/show_map_button"
         android:layout_marginTop="50dp">
 
 

@@ -202,10 +202,6 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    public void onClickMapActivity(View view) {
-        Intent startMapActivity = new Intent(this,MapActivity.class);
-        startActivity(startMapActivity);
-    }
 
     private void launchCamera() {
         new SandriosCamera(this, CAPTURE_MEDIA)
