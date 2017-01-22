@@ -82,4 +82,10 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(startMapActivity);
     }
 
+    public void onReloadApp(View view){
+        Intent intent = new Intent(this,MainActivity.class);
+        finish();
+        startActivity(intent);
+    }
+
 }

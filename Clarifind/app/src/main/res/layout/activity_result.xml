@@ -25,9 +25,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/show_map_button"
         android:onClick="onClickMapActivity"
+        android:drawableLeft="@drawable/ic_map_indicator"
         android:layout_below="@+id/search_title"
-        android:layout_alignEnd="@+id/search_title"
-        android:drawableLeft="@drawable/ic_map_indicator" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp" />
+
+    <Button
+        android:text="Try again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reload"
+        android:onClick="onReloadApp"
+        android:layout_below="@+id/search_title"
+        android:layout_toEndOf="@+id/show_map_button"
+        android:layout_marginStart="26dp" />
 
     <ListView
         android:layout_width="match_parent"
@@ -36,6 +47,7 @@
         android:id="@+id/locationList">
 
     </ListView>
+
 
 
 
