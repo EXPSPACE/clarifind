@@ -9,11 +9,13 @@ import android.graphics.Matrix;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.R.attr.handle;
 import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 
 public class MainActivity extends AppCompatActivity implements
@@ -156,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements
             //send to clarifai
             ClarifaiService clarifaiService = ClarifaiService.getInstance();
             LinearLayout layoutKeywords = (LinearLayout) findViewById(R.id.LayoutKeywords);
-            clarifaiService.sendImage(myBitmap, layoutKeywords);
+            clarifaiService.sendImage(myBitmap, layoutKeywords,this);
 
 
 
@@ -168,11 +171,13 @@ public class MainActivity extends AppCompatActivity implements
 
     /** Called when the user clicks the Camera button */
     public void openCamera(View view) {
-        launchCamera();
         LinearLayout welcomeLayout = (LinearLayout)this.findViewById(R.id.Welcome);
         LinearLayout keywordLayout = (LinearLayout)this.findViewById(R.id.LayoutKeywords);
-        welcomeLayout.setVisibility(LinearLayout.GONE);
-        keywordLayout.setVisibility(LinearLayout.VISIBLE);
+        //welcomeLayout.setVisibility(LinearLayout.GONE);
+        //keywordLayout.setVisibility(LinearLayout.VISIBLE);
+
+        launchCamera();
+
     }
 
     public void onLocationSearch(View view) {

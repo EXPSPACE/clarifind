@@ -1,6 +1,7 @@
 package com.conuhax.clarifind.services;
 
 import android.graphics.Bitmap;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.conuhax.clarifind.Authentication.Credential;
+import com.conuhax.clarifind.MainActivity;
 import com.conuhax.clarifind.R;
 import com.conuhax.clarifind.model.clarifai.Keyword;
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
@@ -55,9 +57,10 @@ public class ClarifaiService {
      * send the bytes of one image and receive back predictions from the general model
      *
      * @param image
+     * @param mainActivity
      * @return
      */
-    public void sendImage(Bitmap image, LinearLayout linearLayoutKeywords)
+    public void sendImage(Bitmap image, LinearLayout linearLayoutKeywords, MainActivity mainActivity)
     {
         Log.d("sendImage", "processed");
 
@@ -76,27 +79,40 @@ public class ClarifaiService {
                     for(int i=0; i< clarifaiOutput.data().size();i++)
                     {
                         Concept current = (Concept) clarifaiOutput.data().get(i);
-                        //Log.e("name", current.name());
-                        //Log.e("value", String.valueOf(current.value()));
+                        Log.e("name", current.name());
+                        Log.e("value", String.valueOf(current.value()));
 
-                        if(current.value() > 0.90)
-                        {
+
                             Keyword newKeyword = new Keyword(current.name(),current.value());
                             keywordList.add(newKeyword);
 
-                        }
+
                     }
+
+                    Log.e("SIZE1", String.valueOf(keywordList.size()));
 
                     for (int i = 0; i < keywordList.size(); i++) {
                         Keyword word = keywordList.get(i);
-                        Button btn = new Button(linearLayoutKeywords.getContext());
-                        btn.setId(i + 1);
-                        btn.setText(word.getName());
+
+                        Log.e("SIZE", String.valueOf(keywordList.size()));
+
+                        Log.e("name", word.getName());
+                        Log.e("value", String.valueOf(word.getValue()));
+
+
+                        Button btn = new Button(mainActivity);
+
+                        btn.setText("TESTSETSTETSETETSE");
                         btn.setOnClickListener(v -> {
 
                             //POUR SIMON SEND LOCATION +
                         });
-                        linearLayoutKeywords.addView(btn);
+
+
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        LinearLayout linearLayout = (LinearLayout) mainActivity.findViewById(R.id.LayoutKeywords);
+                        linearLayout.addView(btn,lp);
+
 
                     }
                 });
