@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements
     private boolean showImagePicker = true;
     protected GoogleApiClient mGoogleApiClient;
     protected Location mLastLocation;
+    public final static String COORD_MESSAGE = "com.example.myfirstapp.COORDINATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
