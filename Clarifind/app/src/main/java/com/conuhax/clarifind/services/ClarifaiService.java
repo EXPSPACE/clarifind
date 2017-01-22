@@ -94,7 +94,7 @@ public class ClarifaiService {
                         btn.setText(word.getName());
                         btn.setOnClickListener(v -> {
 
-                            //
+                            //POUR SIMON SEND LOCATION +
                         });
                         linearLayoutKeywords.addView(btn);
 

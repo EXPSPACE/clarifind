@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements
 
             //send to clarifai
             ClarifaiService clarifaiService = ClarifaiService.getInstance();
-            LinearLayout layoutKeywords = (LinearLayout) findViewById(R.id.layoutKeywords);
+            LinearLayout layoutKeywords = (LinearLayout) findViewById(R.id.LayoutKeywords);
             clarifaiService.sendImage(myBitmap, layoutKeywords);
 
 
