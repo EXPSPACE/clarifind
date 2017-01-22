@@ -26,7 +26,8 @@
         android:id="@+id/show_map_button"
         android:onClick="onClickMapActivity"
         android:layout_below="@+id/search_title"
-        android:layout_alignEnd="@+id/search_title" />
+        android:layout_alignEnd="@+id/search_title"
+        android:drawableLeft="@drawable/ic_map_indicator" />
 
     <ListView
         android:layout_width="match_parent"
