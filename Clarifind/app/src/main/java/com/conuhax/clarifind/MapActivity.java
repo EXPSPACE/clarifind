@@ -51,11 +51,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        //event
-        LatLng montreal = new LatLng(45.5017, -73.5673);
-        MarkerOptions montrealEvent = new MarkerOptions().position(montreal).title("Montreal MARKER!").draggable(true);
-        mMap.addMarker(montrealEvent);
-
         Listings[] resultListings = ResultActivity.businessResponse.listings;
         for(Listings listing : resultListings) {
             double latDouble = Double.parseDouble(listing.geoCode.latitude);
@@ -70,9 +65,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             mMap.addMarker(markerEvent);
         }
 
+        Log.i("ResultsActivity", "curr lat double: " + MainActivity.mLastLocation.getLatitude());
+        Log.i("ResultsActivity", "curr long double: " + MainActivity.mLastLocation.getLongitude());
 
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(montreal, 15f));
+        LatLng currLocation = new LatLng(MainActivity.mLastLocation.getLatitude(), MainActivity.mLastLocation.getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLocation, 15));
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
