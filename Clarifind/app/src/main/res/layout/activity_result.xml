@@ -19,14 +19,6 @@
         android:layout_marginTop="15dp"
         android:id="@+id/search_title" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/show_map_button"
-        android:id="@+id/locationList">
-
-    </ListView>
-
     <Button
         android:text="Show map"
         android:layout_width="wrap_content"
@@ -35,6 +27,15 @@
         android:onClick="onClickMapActivity"
         android:layout_below="@+id/search_title"
         android:layout_alignEnd="@+id/search_title" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/show_map_button"
+        android:id="@+id/locationList">
+
+    </ListView>
+
 
 
 </RelativeLayout>
