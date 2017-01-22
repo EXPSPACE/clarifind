@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,6 @@ import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
-    private List<Keyword> keywordList;
     private static final int CAPTURE_MEDIA = 368;
     private boolean showImagePicker = true;
     protected GoogleApiClient mGoogleApiClient;
@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements
                     .addApi(LocationServices.API)
                     .build();
         }
-
-        keywordList = new ArrayList<>();
     }
 
     //Connects to the location service
@@ -156,7 +154,8 @@ public class MainActivity extends AppCompatActivity implements
 
             //send to clarifai
             ClarifaiService clarifaiService = ClarifaiService.getInstance();
-            clarifaiService.sendImage(myBitmap, keywordList);
+            LinearLayout layoutKeywords = (LinearLayout) findViewById(R.id.layoutKeywords);
+            clarifaiService.sendImage(myBitmap, layoutKeywords);
 
 
 
