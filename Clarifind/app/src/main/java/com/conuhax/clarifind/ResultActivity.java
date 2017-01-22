@@ -28,6 +28,10 @@ public class ResultActivity extends AppCompatActivity {
         String coordinates = intent.getStringExtra(ClarifaiService.COORD_MESSAGE);
         String keyword = intent.getStringExtra(ClarifaiService.WORD_MESSAGE);
 
+        TextView searchTitle = (TextView) findViewById(R.id.search_title);
+        searchTitle.setText("Yellow page search results for : " + keyword);
+
+
         YellowPagesService yellowPagesService = retrofit.create(YellowPagesService.class);
         Log.i("ANY",coordinates);
         Call<FindBusinessResponse> call = yellowPagesService.fetchBusinesses(keyword,coordinates,"JSON","rcqm8a36gxb284um4sy5yzhx","127.0.0.1");
