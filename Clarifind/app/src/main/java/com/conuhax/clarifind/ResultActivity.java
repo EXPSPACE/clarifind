@@ -19,6 +19,8 @@ import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 
 public class ResultActivity extends AppCompatActivity {
 
+    public static FindBusinessResponse businessResponse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,9 @@ public class ResultActivity extends AppCompatActivity {
             public void onResponse(Call<FindBusinessResponse> call, Response<FindBusinessResponse> response) {
                 final TextView textView = (TextView) findViewById(R.id.yellow_response);
                 textView.setText(response.body().toString());
+
+               businessResponse = response.body();
+
             }
             @Override
             public void onFailure(Call<FindBusinessResponse> call, Throwable t) {
