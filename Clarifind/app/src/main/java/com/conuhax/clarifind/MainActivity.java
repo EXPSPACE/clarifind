@@ -173,10 +173,10 @@ public class MainActivity extends AppCompatActivity implements
     public void openCamera(View view) {
         LinearLayout welcomeLayout = (LinearLayout)this.findViewById(R.id.Welcome);
         LinearLayout keywordLayout = (LinearLayout)this.findViewById(R.id.LayoutKeywords);
-        //welcomeLayout.setVisibility(LinearLayout.GONE);
-        //keywordLayout.setVisibility(LinearLayout.VISIBLE);
-
+        welcomeLayout.setVisibility(LinearLayout.GONE);
+        keywordLayout.setVisibility(LinearLayout.VISIBLE);
         launchCamera();
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.conuhax.clarifind.services;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.conuhax.clarifind.Authentication.Credential;
 import com.conuhax.clarifind.MainActivity;
 import com.conuhax.clarifind.R;
+import com.conuhax.clarifind.ResultActivity;
 import com.conuhax.clarifind.model.clarifai.Keyword;
 import com.conuhax.clarifind.model.yellowpages.FindBusinessResponse;
 
@@ -29,6 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.conuhax.clarifind.MainActivity.COORD_MESSAGE;
 import static com.conuhax.clarifind.services.YellowPagesService.retrofit;
 
 /**
@@ -82,16 +85,14 @@ public class ClarifaiService {
                         Log.e("name", current.name());
                         Log.e("value", String.valueOf(current.value()));
 
-
-                            Keyword newKeyword = new Keyword(current.name(),current.value());
+                        if(current.value() > 0.90) {
+                            Keyword newKeyword = new Keyword(current.name(), current.value());
                             keywordList.add(newKeyword);
-
+                        }
 
                     }
 
-                    Log.e("SIZE1", String.valueOf(keywordList.size()));
-
-                    for (int i = 0; i < keywordList.size(); i++) {
+                    for (int i = 0; i < keywordList.size() && i<5; i++) {
                         Keyword word = keywordList.get(i);
 
                         Log.e("SIZE", String.valueOf(keywordList.size()));
@@ -99,19 +100,31 @@ public class ClarifaiService {
                         Log.e("name", word.getName());
                         Log.e("value", String.valueOf(word.getValue()));
 
+                        mainActivity.runOnUiThread(() ->
+                        {
+                            // This code will always run on the UI thread, therefore is safe to modify UI
 
-                        Button btn = new Button(mainActivity);
 
-                        btn.setText("TESTSETSTETSETETSE");
-                        btn.setOnClickListener(v -> {
+                            Button btn = new Button(mainActivity);
 
-                            //POUR SIMON SEND LOCATION +
+                            btn.setText(word.getName());
+                            btn.setOnClickListener(v -> {
+
+                                Intent intent = new Intent(mainActivity, ResultActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                //String coord = String.valueOf( "cZ" +String.valueOf(mLastLocation.getLongitude()+"," + mLastLocation.getLatitude()));
+                                //intent.putExtra(COORD_MESSAGE,coord);
+                                mainActivity.startActivity(intent);
+                                mainActivity.finish();
+
+                            });
+
+
+                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            LinearLayout linearLayout = (LinearLayout) mainActivity.findViewById(R.id.LayoutKeywords);
+                            linearLayout.addView(btn,lp);
+
                         });
-
-
-                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        LinearLayout linearLayout = (LinearLayout) mainActivity.findViewById(R.id.LayoutKeywords);
-                        linearLayout.addView(btn,lp);
 
 
                     }
