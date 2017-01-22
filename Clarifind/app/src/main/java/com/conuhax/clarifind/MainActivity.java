@@ -168,6 +168,10 @@ public class MainActivity extends AppCompatActivity implements
     /** Called when the user clicks the Camera button */
     public void openCamera(View view) {
         launchCamera();
+        LinearLayout welcomeLayout = (LinearLayout)this.findViewById(R.id.Welcome);
+        LinearLayout keywordLayout = (LinearLayout)this.findViewById(R.id.LayoutKeywords);
+        welcomeLayout.setVisibility(LinearLayout.GONE);
+        keywordLayout.setVisibility(LinearLayout.VISIBLE);
     }
 
     public void onLocationSearch(View view) {
@@ -182,15 +186,20 @@ public class MainActivity extends AppCompatActivity implements
         call.enqueue(new Callback<FindBusinessResponse>() {
             @Override
             public void onResponse(Call<FindBusinessResponse> call, Response<FindBusinessResponse> response) {
-                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
-                textView.setText(response.body().toString());
+//                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
+//                textView.setText(response.body().toString());
             }
             @Override
             public void onFailure(Call<FindBusinessResponse> call, Throwable t) {
-                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
-                textView.setText("Something went wrong: " + t.getMessage());
+//                final TextView textView = (TextView) findViewById(R.id.yellow_page_response);
+//                textView.setText("Something went wrong: " + t.getMessage());
             }
         });
+    }
+
+    public void onClickMapActivity(View view) {
+        Intent startMapActivity = new Intent(this,MapActivity.class);
+        startActivity(startMapActivity);
     }
 
     private void launchCamera() {
@@ -200,5 +209,4 @@ public class MainActivity extends AppCompatActivity implements
                 .setMediaAction(CameraConfiguration.MEDIA_ACTION_PHOTO) // default is CameraConfiguration.MEDIA_ACTION_BOTH
                 .launchCamera();
     }
-
 }
