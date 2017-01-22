@@ -38,7 +38,7 @@
             android:layout_marginTop="48dp" />
 
         <TextView
-            android:text="We're no strangers to love.\nYou know the rules, and so do I\nA new commitment's what I'm\nThinking of\nYou wouldn't get this from\nANY OTHER GUY!!!!!!!"
+            android:text="@string/stuff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"

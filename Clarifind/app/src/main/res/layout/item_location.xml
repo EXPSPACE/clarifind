@@ -1,32 +1,117 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/locationName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name" />
+    android:orientation="vertical"
+    android:layout_margin="30dp">
 
-    <TextView
-        android:id="@+id/locationStreet"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomeTown" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/locationCity"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/locationNameLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/locationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomeTown" />
-    <TextView
-        android:id="@+id/locationProv"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/locationStreetLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Street"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/locationStreet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HomeTown" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomeTown" />
-    <TextView
-        android:id="@+id/locationPostal"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/locationCityLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="City"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/locationCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HomeTown" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HomeTown" />
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/locationProvLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Province"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/locationProv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HomeTown" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/locationPostalLabel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Postal Code"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/locationPostal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HomeTown" />
+    </LinearLayout>
+
 </LinearLayout>

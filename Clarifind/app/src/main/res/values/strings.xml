@@ -2,4 +2,10 @@
     <string name="app_name">Clarifind</string>
     <string name="welcome">Welcome</string>
     <string name="google_maps_key">AIzaSyDeD5SiMkCEdJLa7LeUNBSZIcUoNNVf078</string>
+    <string name="stuff">
+        We are proud to introduce the first ever image to bussiness locator. Using the power of Clarifay
+    mixed in with the yellow pages, you can find stores next to you by simply taking a picture of
+        whatever you want to find.
+    </string>
+
 </resources>
